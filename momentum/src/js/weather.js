@@ -12,11 +12,10 @@ async function getWeather() {
     const res = await fetch(url);
     const data = await res.json(); 
 
-    console.log(data)
     console.log(data.message)
-    
-    if (data.message == 'Nothing to geocode' || data.message == 'city not found') { 
-        error.textContent = `Error! Nothing to geocode for ${city.value}!`
+        
+    if (data.message == 'Nothing to geocode' || data.message == 'city not found' || data.message == undefined) { 
+        error.textContent = `Error! ${data.message} for ${city.value}!`
         city.value = ''
         weatherIcon.className = 'weather-icon owf';
         temperature.textContent = ``;
