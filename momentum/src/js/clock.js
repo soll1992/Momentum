@@ -15,7 +15,7 @@ function showDate() {
 }
 
 function getRandomNum() {
-    let num = Math.floor(Math.random() * 21);
+    let num = Math.floor(Math.random() * 20 + 1);
     return bgNum = num.toString().padStart(2, '0')
 }
 
@@ -62,9 +62,9 @@ function getTimeOfDay() {
 
 function setBg() {
     const img = new Image();
-    img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${dayTime}/${bgNum}.jpg`
+    img.src = `https://raw.githubusercontent.com/soll1992/stage1-tasks/assets/images/${dayTime}/${bgNum}.jpg`
     img.onload = () => {      
-        body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${dayTime}/${bgNum}.jpg')`;
+        body.style.backgroundImage = `url('https://raw.githubusercontent.com/soll1992/stage1-tasks/assets/images/${dayTime}/${bgNum}.jpg')`;
     };
 }
 
