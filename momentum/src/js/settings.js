@@ -21,6 +21,8 @@ const musicW = document.querySelector('.musicW');
 const quoteW = document.querySelector('.quoteW');
 const greetingW = document.querySelector('.greetingW');
 
+
+
 let isRu = false
 
 let clockIsHidden = false
@@ -29,6 +31,33 @@ let playerIsHidden = false
 let quoteIsHidden = false
 let greetingIsHidden = false
 
+function switchLang() {
+    const mainTitle = document.querySelector('.main-title');
+    const languageTitle = document.querySelector('.language-title');
+    const imagesTitle = document.querySelector('.images-title');
+    const widgetsTitle = document.querySelector('.widgets-title');
+    if(isRu) {
+        mainTitle.textContent = 'Настройки'
+        languageTitle.textContent = 'Язык'
+        imagesTitle.textContent = 'Изображения'
+        widgetsTitle.textContent = 'Виджеты'
+        clockW.textContent = 'Часы'
+        wetherW.textContent = 'Погода'
+        musicW.textContent = 'Музыка'
+        quoteW.textContent = 'Цитаты'
+        greetingW.textContent = 'Приветствие'
+    } else {
+        mainTitle.textContent = 'Settings'
+        languageTitle.textContent = 'Language'
+        imagesTitle.textContent = 'Images'
+        widgetsTitle.textContent = 'Widgets'
+        clockW.textContent = 'Clock'
+        wetherW.textContent = 'Weather'
+        musicW.textContent = 'Music'
+        quoteW.textContent = 'Quote'
+        greetingW.textContent = 'Greeting'
+    }
+}
 
 settings.addEventListener('click',() => {
     modal.classList.add('fixed-overlay-active')
@@ -44,12 +73,16 @@ document.addEventListener('click', (e) => {
 ru.addEventListener('click', () => {
     ru.classList.add('lang-active')
     en.classList.remove('lang-active')
+    isRu = true
+    switchLang()
     setLocalStorageSettings()
 })
 
 en.addEventListener('click', () => {
     ru.classList.remove('lang-active')
     en.classList.add('lang-active')
+    isRu = false
+    switchLang()
     setLocalStorageSettings()
 })
 
@@ -84,6 +117,7 @@ greetingW.addEventListener('click', () => {
     greeting.classList.toggle('widget-hidden')
     greetingIsHidden = false
 })
+
 
 function setLocalStorageSettings() {
     if(clockTime.classList.contains('widget-hidden')) {
@@ -148,6 +182,7 @@ function getLocalStorageSettings() {
         ru.classList.remove('lang-active')
         en.classList.add('lang-active')
     }
+    switchLang()
 }
 
 
