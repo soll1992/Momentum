@@ -16,6 +16,7 @@ const changeQuote = document.querySelector('.quote-button');
 const greeting = document.querySelector('.greeting-container');
 
 const clockW = document.querySelector('.clockW');
+const dateW = document.querySelector('.dateW');
 const wetherW = document.querySelector('.wetherW');
 const musicW = document.querySelector('.musicW');
 const quoteW = document.querySelector('.quoteW');
@@ -26,6 +27,7 @@ const greetingW = document.querySelector('.greetingW');
 let isRu = false
 
 let clockIsHidden = false
+let dateIsHidden = false
 let weatherIsHidden = false
 let playerIsHidden = false
 let quoteIsHidden = false
@@ -56,6 +58,7 @@ function switchLang() {
         winter.textContent = 'Зима'
         autumn.textContent = 'Осень'
         clockW.textContent = 'Часы'
+        dateW.textContent = 'Дата'
         wetherW.textContent = 'Погода'
         musicW.textContent = 'Музыка'
         quoteW.textContent = 'Цитаты'
@@ -72,6 +75,7 @@ function switchLang() {
         winter.textContent = 'winter'
         autumn.textContent = 'autumn'
         clockW.textContent = 'Clock'
+        dateW.textContent = 'Date'
         wetherW.textContent = 'Weather'
         musicW.textContent = 'Music'
         quoteW.textContent = 'Quote'
@@ -109,8 +113,13 @@ en.addEventListener('click', () => {
 clockW.addEventListener('click', () => {
     clockW.classList.toggle('lang-active')
     clockTime.classList.toggle('widget-hidden')
-    clockDate.classList.toggle('widget-hidden')
     clockIsHidden = false
+})
+
+dateW.addEventListener('click', () => {
+    dateW.classList.toggle('lang-active')
+    clockDate.classList.toggle('widget-hidden')
+    dateIsHidden = false
 })
 
 wetherW.addEventListener('click', () => {
@@ -144,6 +153,11 @@ function setLocalStorageSettings() {
         clockIsHidden = true
     }
     localStorage.setItem('clock', clockIsHidden);
+
+    if(clockDate.classList.contains('widget-hidden')) {
+        dateIsHidden = true
+    }
+    localStorage.setItem('date', dateIsHidden);
     
     if(weather.classList.contains('widget-hidden')) {
         weatherIsHidden = true
@@ -168,6 +182,7 @@ function setLocalStorageSettings() {
 
 function getLocalStorageSettings() {
     clockIsHidden = (JSON.parse(localStorage.getItem('clock')))
+    dateIsHidden = (JSON.parse(localStorage.getItem('date')))
     weatherIsHidden = (JSON.parse(localStorage.getItem('weather')))
     playerIsHidden = (JSON.parse(localStorage.getItem('player')))
     quoteIsHidden = (JSON.parse(localStorage.getItem('quote')))
@@ -175,6 +190,9 @@ function getLocalStorageSettings() {
     if(clockIsHidden) {
         clockW.classList.toggle('lang-active')
         clockTime.classList.toggle('widget-hidden')
+    }
+    if(dateIsHidden) {
+        dateW.classList.toggle('lang-active')
         clockDate.classList.toggle('widget-hidden')
     }
     if(weatherIsHidden) {
