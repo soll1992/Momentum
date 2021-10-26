@@ -10,10 +10,64 @@ const en = document.querySelector('.en');
 const git = document.querySelector('.git');
 const unsplash = document.querySelector('.unsplash');
 const flickr = document.querySelector('.flickr');
+
+const car = document.querySelector('.car');
+const forest = document.querySelector('.forest');
+const cityTag = document.querySelector('.cityTag');
+const winter = document.querySelector('.winter');
+const autumn = document.querySelector('.autumn');
+
 let isRu = false
 let bgNum = '01'
 let dayTime = ''
 let service = 'git'
+let tag
+
+car.addEventListener('click', () => {
+    tag = car.textContent
+    car.classList.add('lang-active')
+    forest.classList.remove('lang-active')
+    cityTag.classList.remove('lang-active')
+    winter.classList.remove('lang-active')
+    autumn.classList.remove('lang-active')
+})
+
+forest.addEventListener('click', () => {
+    tag = forest.textContent
+    car.classList.remove('lang-active')
+    forest.classList.add('lang-active')
+    cityTag.classList.remove('lang-active')
+    winter.classList.remove('lang-active')
+    autumn.classList.remove('lang-active')
+})
+
+cityTag.addEventListener('click', () => {
+    tag = cityTag.textContent
+    car.classList.remove('lang-active')
+    forest.classList.remove('lang-active')
+    cityTag.classList.add('lang-active')
+    winter.classList.remove('lang-active')
+    autumn.classList.remove('lang-active')
+})
+
+winter.addEventListener('click', () => {
+    tag = winter.textContent
+    car.classList.remove('lang-active')
+    forest.classList.remove('lang-active')
+    cityTag.classList.remove('lang-active')
+    winter.classList.add('lang-active')
+    autumn.classList.remove('lang-active')
+})
+
+autumn.addEventListener('click', () => {
+    tag = autumn.textContent
+    car.classList.remove('lang-active')
+    forest.classList.remove('lang-active')
+    cityTag.classList.remove('lang-active')
+    winter.classList.remove('lang-active')
+    autumn.classList.add('lang-active')
+})
+
 
 function showDate() {
     const date = new Date();
@@ -121,8 +175,11 @@ function setBgGit() {
 }
 
 async function setBgUnsplash(){
+    if(!tag) {
+        tag = dayTime
+    }    
     const img = new Image();
-    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${dayTime},nature&client_id=nop7M0-RPmejMitzKnbiFYnxwc9KNpW_AoN6fv0Mq2Y`;
+    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${tag}&client_id=nop7M0-RPmejMitzKnbiFYnxwc9KNpW_AoN6fv0Mq2Y`;
     const res = await fetch(url);
     const data = await res.json();
     img.src = `${data.urls.regular}`
@@ -133,8 +190,11 @@ async function setBgUnsplash(){
 
 
 async function setBgFlickr(){
+    if(!tag) {
+        tag = dayTime
+    } 
     const img = new Image();
-    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=2d7cc89a9f10b77eac4f89da4cf85f24&tags=${dayTime},nature&extras=url_h&format=json&nojsoncallback=1`;
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=2d7cc89a9f10b77eac4f89da4cf85f24&tags=${tag}&extras=url_h&format=json&nojsoncallback=1`;
     const res = await fetch(url);
     const data = await res.json();
     if(data.photos.photo[+bgNum].url_h) {
@@ -203,11 +263,24 @@ unsplash.addEventListener('click', () => {
 function setLocalStorageLang() {
     localStorage.setItem('service', service)
     localStorage.setItem('lang', isRu)
+    localStorage.setItem('tag', tag)
 }
 
 function getLocalStorageLang() {
     isRu = (JSON.parse(localStorage.getItem('lang')))
     service = localStorage.getItem('service')
+    tag = localStorage.getItem('tag')
+    if(tag == 'car') {
+        car.classList.add('lang-active')
+    } else if (tag == 'forest') {
+        forest.classList.add('lang-active')
+    } else if (tag == 'cityTag') {
+        cityTag.classList.add('lang-active')
+    } else if (tag == 'winter') {
+        winter.classList.add('lang-active')
+    } else if (tag == 'autumn') {
+        autumn.classList.add('lang-active')
+    }
     if (service == 'unsplash') {
         git.classList.remove('lang-active')
         flickr.classList.remove('lang-active')

@@ -36,11 +36,25 @@ function switchLang() {
     const languageTitle = document.querySelector('.language-title');
     const imagesTitle = document.querySelector('.images-title');
     const widgetsTitle = document.querySelector('.widgets-title');
+    const imageTagTitle = document.querySelector('.image-tag-title');
+
+    const car = document.querySelector('.car');
+    const forest = document.querySelector('.forest');
+    const cityTag = document.querySelector('.cityTag');
+    const winter = document.querySelector('.winter');
+    const autumn = document.querySelector('.autumn');
+
     if(isRu) {
         mainTitle.textContent = 'Настройки'
         languageTitle.textContent = 'Язык'
         imagesTitle.textContent = 'Изображения'
         widgetsTitle.textContent = 'Виджеты'
+        imageTagTitle.textContent = 'Теги изображений'
+        car.textContent = 'Машина'
+        forest.textContent = 'Лес'
+        cityTag.textContent = 'Город'
+        winter.textContent = 'Зима'
+        autumn.textContent = 'Осень'
         clockW.textContent = 'Часы'
         wetherW.textContent = 'Погода'
         musicW.textContent = 'Музыка'
@@ -51,6 +65,12 @@ function switchLang() {
         languageTitle.textContent = 'Language'
         imagesTitle.textContent = 'Images'
         widgetsTitle.textContent = 'Widgets'
+        imageTagTitle.textContent = 'Image tags'
+        car.textContent = 'сar'
+        forest.textContent = 'forest'
+        cityTag.textContent = 'city'
+        winter.textContent = 'winter'
+        autumn.textContent = 'autumn'
         clockW.textContent = 'Clock'
         wetherW.textContent = 'Weather'
         musicW.textContent = 'Music'
