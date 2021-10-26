@@ -270,15 +270,15 @@ function getLocalStorageLang() {
     isRu = (JSON.parse(localStorage.getItem('lang')))
     service = localStorage.getItem('service')
     tag = localStorage.getItem('tag')
-    if(tag == 'car') {
+    if(tag == 'car' || tag == 'Машина') {
         car.classList.add('lang-active')
-    } else if (tag == 'forest') {
+    } else if (tag == 'forest' || tag == 'Лес') {
         forest.classList.add('lang-active')
-    } else if (tag == 'cityTag') {
+    } else if (tag == 'cityTag' || tag == 'Город') {
         cityTag.classList.add('lang-active')
-    } else if (tag == 'winter') {
+    } else if (tag == 'winter' || tag == 'Зима') {
         winter.classList.add('lang-active')
-    } else if (tag == 'autumn') {
+    } else if (tag == 'autumn' || tag == 'Осень') {
         autumn.classList.add('lang-active')
     }
     if (service == 'unsplash') {
